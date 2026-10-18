@@ -24,17 +24,22 @@ const sciFiMovies = [
   { title: "Blade Runner 2049", year: 2017, description: "A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard, who's been missing for thirty years." }
 ];
 
-// Get the genre dropdown and movie recommendations elements
+// Select the genre dropdown by its unique ID
 const genreDropdown = document.getElementById("genre");
-const movieRecommendations = document.getElementById("movieRecommendations");
 
-// Get the theme toggle button
-const themeToggle = document.getElementById("themeToggle");
+// Select the first section using a CSS tag selector
+const movieRecommendations = document.querySelector("section");
+
+// Select buttons by tag name, then use [0] to get the first button
+const themeToggle = document.getElementsByTagName("button")[0];
 
 // Set up event listener for theme toggle
 themeToggle.addEventListener("click", function() {
   // Toggle the light-theme class on the body
   document.body.classList.toggle("light-theme");
+
+  // Keep the switch state in sync for screen readers
+  themeToggle.setAttribute("aria-checked", document.body.classList.contains("light-theme"));
   
   // Update the button text based on the theme
   if (document.body.classList.contains("light-theme")) {
